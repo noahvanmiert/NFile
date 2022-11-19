@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <dirent.h>
 
 #define is_nullptr(ptr) ptr == 0
 #define DEFAULT_BUFFER_SIZE 1024
@@ -75,10 +76,16 @@ const char *nf_read_file(struct NFile *nf)
 		buffer_index += 1;
 	}
 	
-	// allocate the exact amount of memory for the string.
-	buffer = realloc(buffer, (buffer_index - 1) * sizeof(char));
-	// set the last character in the string to '\0'
-	buffer[buffer_index - 1] = '\0';
+	if (buffer_index > 1) {
+		// allocate the exact amount of memory for the string.
+		buffer = realloc(buffer, (buffer_index - 1) * sizeof(char));
+		// set the last character in the string to '\0'
+		buffer[buffer_index - 1] = '\0';
+
+		return (const char *) buffer;
+	}
+
+	buffer[0] = '\0';
 
 	return (const char *) buffer;
 }
@@ -90,7 +97,7 @@ int nf_create_file(const char *filepath)
 	FILE *f = fopen(filepath, "w");
 	fclose(f);
 
-	return is_nullptr(f) ? 1 : 0
+	return is_nullptr(f) ? 1 : 0;
 }
 
 
