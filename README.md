@@ -3,19 +3,18 @@
 This is just for fun. I'm not that good at programming, so if you notice any bugs please notify me.
 
 ## Example files
-To run the test files, you need to compile the example programs located in the 'Examples' folder.
 
 ---
 
 ### To compile the 'read_from_file' example
 ``` bash
-gcc Examples/read_from_file.c src/nfile.c -o read_from_file
+gcc Examples/read_from_file.c -o read_from_file
 ```
 
 ---
 ### To compile the 'write_to_file' example
 ``` bash
-gcc Examples/write_to_file.c src/nfile.c -o write_to_file
+gcc Examples/write_to_file.c -o write_to_file
 ```
 
 
